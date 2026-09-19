@@ -1,0 +1,21 @@
+version: 2
+
+project_name: git-bootstrap
+
+changelog:
+  disable: true
+
+builds:
+  - main: ./cmd/git-bootstrap
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s
+      - -w
+      - -X github.com/juli3nk/git-bootstrap-cli/internal/cli.appVersion={{.Version}}
+      - -X github.com/juli3nk/git-bootstrap-cli/internal/cli.appCommit={{.Commit}}
+      - -X github.com/juli3nk/git-bootstrap-cli/internal/cli.appBuildDate={{.Date}}
+    goos:
+      - linux
+    goarch:
+      - amd64
